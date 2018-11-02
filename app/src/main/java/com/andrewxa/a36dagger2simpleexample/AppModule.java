@@ -3,10 +3,17 @@ package com.andrewxa.a36dagger2simpleexample;
 import android.app.Activity;
 import android.content.Context;
 
+import com.andrewxa.a36dagger2simpleexample.adapter.RecyclerViewAdapter;
+
 import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.ContributesAndroidInjector;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module(includes = AndroidInjectionModule.class)
 abstract class AppModule {
@@ -29,4 +36,9 @@ abstract class AppModule {
     @PerActivity
     @Binds
     abstract MainContract.MainView view(MainActivity activity);
+
+    @PerActivity
+    @Binds
+    abstract RecyclerViewAdapter.ClickListener clickListener(MainActivity mainActivity);
+
 }
